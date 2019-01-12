@@ -14,7 +14,7 @@ public class HibernateUtil {
 	static {
 		try {
 			sessionFactory = new Configuration()
-					.configure("com/rf/privjoy/myStock/hibernate.cfg.xml")
+					.configure("com/rf/privjoy/myStock/configuration/hibernate.cfg.xml")
 					.buildSessionFactory();
 			LOGGER.info("Session factory created");
 		} catch (Throwable ex) {
