@@ -44,7 +44,7 @@ import com.rf.privjoy.myStock.impl.persistent.Stock;
 import com.rf.privjoy.myStock.impl.persistent.StockSpecification;
 import com.rf.privjoy.myStock.impl.persistent.User;
 import com.rf.privjoy.myStock.impl.utils.Constants;
-import com.rf.privjoy.myStock.impl.webapp.impl.MyStockDataService;
+import com.rf.privjoy.myStock.impl.utils.MyStockDataService;
 
 public class MyStockTest {
 	

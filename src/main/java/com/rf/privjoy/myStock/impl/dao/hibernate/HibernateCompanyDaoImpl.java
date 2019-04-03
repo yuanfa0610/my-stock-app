@@ -1,5 +1,7 @@
 package com.rf.privjoy.myStock.impl.dao.hibernate;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
@@ -19,9 +21,12 @@ public class HibernateCompanyDaoImpl extends HibernateGenericDao<Company, Long> 
 		StringBuilder queryString = new StringBuilder("FROM ").append(Company.class.getName()).append(" WHERE name = (:name)");
 		Query query = getSession().createQuery(queryString.toString());
 		query.setParameter("name", name);
-		Company company = (Company) query.getSingleResult();
+		List<Company> companies = query.getResultList();
 		endTransaction();
-		return company;
+		if (companies == null || companies.size() == 0) {
+			return null;
+		}
+		return companies.get(0);
 	}
 
 }

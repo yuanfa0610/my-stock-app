@@ -1,19 +1,15 @@
 package com.rf.privjoy.myStock.dto;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class InventoryDTO {
 	
 	private Long inventoryId;
-	private StockDTO stock;
-	private UserDTO user;
-	private BigDecimal stockPrice;
-	private BigDecimal purchaseQuantity;
-
+	private Long userId;
+	private Long stockId;
 	private String status;
-	private Timestamp time;
-	
+	private Timestamp lastUpdated;
+
 	public InventoryDTO() {
 		
 	}
@@ -31,63 +27,35 @@ public class InventoryDTO {
 	public void setInventoryId(Long inventoryId) {
 		this.inventoryId = inventoryId;
 	}
-
+	
 	/**
-	 * @return the stock
+	 * @return the userId
 	 */
-	public StockDTO getStock() {
-		return stock;
+	public Long getUserId() {
+		return userId;
 	}
 
 	/**
-	 * @param stock the stock to set
+	 * @param userId the userId to set
 	 */
-	public void setStock(StockDTO stock) {
-		this.stock = stock;
-	}
-
-	/**
-	 * @return the user
-	 */
-	public UserDTO getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(UserDTO user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	
 	/**
-	 * @return the stockPrice
+	 * @return the stockId
 	 */
-	public BigDecimal getStockPrice() {
-		return stockPrice;
+	public Long getStockId() {
+		return stockId;
 	}
 
 	/**
-	 * @param stockPrice the stockPrice to set
+	 * @param stockId the stockId to set
 	 */
-	public void setStockPrice(BigDecimal stockPrice) {
-		this.stockPrice = stockPrice;
+	public void setStockId(Long stockId) {
+		this.stockId = stockId;
 	}
-
-	/**
-	 * @return the purchaseQuantity
-	 */
-	public BigDecimal getPurchaseQuantity() {
-		return purchaseQuantity;
-	}
-
-	/**
-	 * @param purchaseQuantity the purchaseQuantity to set
-	 */
-	public void setPurchaseQuantity(BigDecimal purchaseQuantity) {
-		this.purchaseQuantity = purchaseQuantity;
-	}
-
+	
 	/**
 	 * @return the status
 	 */
@@ -101,19 +69,19 @@ public class InventoryDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	/**
-	 * @return the time
+	 * @return the lastUpdated
 	 */
-	public Timestamp getTime() {
-		return time;
+	public Timestamp getLastUpdated() {
+		return lastUpdated;
 	}
 
 	/**
-	 * @param time the time to set
+	 * @param lastUpdated the lastUpdated to set
 	 */
-	public void setTime(Timestamp time) {
-		this.time = time;
+	public void setLastUpdated(Timestamp lastUpdated) {
+		this.lastUpdated = lastUpdated;
 	}
 
 }

@@ -4,7 +4,7 @@ public class StockDTO {
 	
 	private Long stockId;
 	private String symbol;
-	private CompanyDTO company;
+	private Long companyId;
 	private StockSpecificationDTO stockSpecification;
 	
 	public StockDTO() {
@@ -38,19 +38,19 @@ public class StockDTO {
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
-
+	
 	/**
-	 * @return the company
+	 * @return the companyId
 	 */
-	public CompanyDTO getCompany() {
-		return company;
+	public Long getCompanyId() {
+		return companyId;
 	}
 
 	/**
-	 * @param company the company to set
+	 * @param companyId the companyId to set
 	 */
-	public void setCompany(CompanyDTO company) {
-		this.company = company;
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
 	}
 
 	/**

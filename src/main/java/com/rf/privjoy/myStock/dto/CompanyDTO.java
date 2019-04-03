@@ -6,7 +6,7 @@ public class CompanyDTO {
 	
 	private Long companyId;
 	private String name;
-	private SectorDTO sector;
+	private Long sectorId;
 	private String yearOfFounded;
 	private String yearOfIpo;
 	private String link;
@@ -46,17 +46,17 @@ public class CompanyDTO {
 	}
 	
 	/**
-	 * @return the sector
+	 * @return the sectorId
 	 */
-	public SectorDTO getSector() {
-		return sector;
+	public Long getSectorId() {
+		return sectorId;
 	}
-	
+
 	/**
-	 * @param sector the sector to set
+	 * @param sectorId the sectorId to set
 	 */
-	public void setSector(SectorDTO sector) {
-		this.sector = sector;
+	public void setSectorId(Long sectorId) {
+		this.sectorId = sectorId;
 	}
 	
 	/**

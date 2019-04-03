@@ -1,5 +1,7 @@
 package com.rf.privjoy.myStock.api;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,13 @@ public interface InventoryExtService {
 	 */
 	@RequestMapping(path = "/{inventoryId}", method = RequestMethod.GET)
 	public InventoryDTO getInventory(@PathVariable("inventoryId") Long inventoryId);
+	
+	/**
+	 * Get a list of dtos for all inventories
+	 * @return list of inventory dtos
+	 */
+	@RequestMapping(path = "/all", method = RequestMethod.GET)
+	public List<InventoryDTO> getAllInventories();
 	
 	/**
 	 * Remove inventory with given id

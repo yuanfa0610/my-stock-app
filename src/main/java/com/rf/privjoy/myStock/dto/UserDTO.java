@@ -10,8 +10,9 @@ public class UserDTO {
 	private String lastname;
 	private String firstname;
 	private String email;
-	private Set<RoleDTO> roles;
-	
+	private Boolean active;
+	private Set<Long> roles;
+
 	public UserDTO() {
 		
 	}
@@ -99,18 +100,32 @@ public class UserDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	/**
+	 * @return the active
+	 */
+	public Boolean getActive() {
+		return active;
+	}
+
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 
 	/**
 	 * @return the roles
 	 */
-	public Set<RoleDTO> getRoles() {
+	public Set<Long> getRoles() {
 		return roles;
 	}
 
 	/**
 	 * @param roles the roles to set
 	 */
-	public void setRoles(Set<RoleDTO> roles) {
+	public void setRoles(Set<Long> roles) {
 		this.roles = roles;
 	}
 	

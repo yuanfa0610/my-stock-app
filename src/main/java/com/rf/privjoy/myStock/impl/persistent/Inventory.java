@@ -23,30 +23,30 @@ public class Inventory {
 	
 	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, 
 			 CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinColumn(name="stock_id")
-	private Stock stock;
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, 
 			 CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinColumn(name="user_id")
-	private User user;
+	@JoinColumn(name="stock_id")
+	private Stock stock;
 	
 	@Column(name="status")
 	private String status;
 	
 	@Column(name="time")
-	private Timestamp time;
-	
+	private Timestamp lastUpdated;
+
 	public Inventory() {
 		
 	}
 	
-	public Inventory(Stock stock, User user, String status, Timestamp time) {
+	public Inventory(Stock stock, User user, String status, Timestamp lastUpdated) {
 		super();
 		this.stock = stock;
 		this.user = user;
 		this.status = status;
-		this.time = time;
+		this.lastUpdated = lastUpdated;
 	}
 	
 	public Long getId() {
@@ -55,14 +55,6 @@ public class Inventory {
 	
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Stock getStock() {
-		return stock;
-	}
-	
-	public void setStock(Stock stock) {
-		this.stock = stock;
 	}
 	
 	public User getUser() {
@@ -73,6 +65,14 @@ public class Inventory {
 		this.user = user;
 	}
 	
+	public Stock getStock() {
+		return stock;
+	}
+	
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+	
 	public String getStatus() {
 		return status;
 	}
@@ -81,17 +81,23 @@ public class Inventory {
 		this.status = status;
 	}
 	
-	public Timestamp getTime() {
-		return time;
+	/**
+	 * @return the lastUpdated
+	 */
+	public Timestamp getLastUpdated() {
+		return lastUpdated;
 	}
-	
-	public void setTime(Timestamp time) {
-		this.time = time;
+
+	/**
+	 * @param lastUpdated the lastUpdated to set
+	 */
+	public void setLastUpdated(Timestamp lastUpdated) {
+		this.lastUpdated = lastUpdated;
 	}
 
 	@Override
 	public String toString() {
-		return "Inventory [stock=" + stock + ", user=" + user + ", status=" + status + ", time=" + time + "]";
+		return "Inventory [stock=" + stock + ", user=" + user + ", status=" + status + ", lastUpdated=" + lastUpdated + "]";
 	}
 
 }

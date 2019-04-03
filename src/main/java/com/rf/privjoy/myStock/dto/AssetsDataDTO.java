@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class AssetsDataDTO {
 	
 	private Long assetsDataId;
+	private Long companyId;
 	private String year;
 	private BigDecimal cashOnHand;
 	private BigDecimal currentAssets;
@@ -29,6 +30,20 @@ public class AssetsDataDTO {
 	 */
 	public void setAssetsDataId(Long assetsDataId) {
 		this.assetsDataId = assetsDataId;
+	}
+	
+	/**
+	 * @return the companyId
+	 */
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+	/**
+	 * @param companyId the companyId to set
+	 */
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
 	}
 	
 	/**

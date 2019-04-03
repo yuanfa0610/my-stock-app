@@ -1,5 +1,8 @@
 package com.rf.privjoy.myStock.impl.webapp.impl;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,52 +12,38 @@ import org.springframework.web.server.ResponseStatusException;
 import com.rf.privjoy.myStock.api.UserExtService;
 import com.rf.privjoy.myStock.dto.UserDTO;
 import com.rf.privjoy.myStock.impl.persistent.User;
+import com.rf.privjoy.myStock.impl.utils.MyStockConversionService;
+import com.rf.privjoy.myStock.impl.utils.MyStockDataService;
+import com.rf.privjoy.myStock.impl.utils.MyStockUpdateService;
 
 @RestController
 @RequestMapping("/user")
 public class UserExtServiceImpl implements UserExtService {
 	
 	private MyStockDataService dataService;
+	private MyStockConversionService conversionService;
+	private MyStockUpdateService updateService;
 
 	@Override
 	public UserDTO createUser(UserDTO userDTO) {
-		if (userDTO.getUserId() != null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID should not be defined when creating a new user");
-		}
-		if (userDTO.getUsername() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Name should not be null when creating a new user");
-		}
-		if (userDTO.getPassword() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password should not be null when creating a new user");
-		}
-		if (userDTO.getLastname() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Lastname should not be null when creating a new user");
-		}
-		if (userDTO.getFirstname() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Firstname should not be null when creating a new user");
-		}
-		if (userDTO.getEmail() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email should not be null when creating a new user");
-		}
-		User user = dataService.convertToPersistedObject(userDTO);
+		createUserValidate(userDTO);
+		User user = conversionService.convertToPersistedObject(userDTO);
 		user.setActive(false);
 		user = dataService.saveUser(user);
-		return dataService.convertToDTO(user);
+		return conversionService.convertToDTO(user);
 	}
 
 	@Override
 	public UserDTO updateUser(UserDTO userDTO) {
-		if (userDTO.getUserId() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID should not be null when updating user");
-		}
-		User updatedUser = dataService.convertToPersistedObject(userDTO);
+		updateUserValidate(userDTO);
+		User updatedUser = conversionService.convertToPersistedObject(userDTO);
 		User existingUser = dataService.getUserById(updatedUser.getId());
 		if (existingUser == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with given ID is not found");
 		}
-		updatedUser.setActive(existingUser.getActive());
-		dataService.updateUser(updatedUser);
-		return dataService.convertToDTO(updatedUser);
+		existingUser = updateService.updateExistingUser(existingUser, updatedUser);
+		existingUser = dataService.updateUser(existingUser);
+		return conversionService.convertToDTO(existingUser);
 	}
 
 	@Override
@@ -63,7 +52,60 @@ public class UserExtServiceImpl implements UserExtService {
 		if (user == null) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with given ID is not found");
 		}
-		return dataService.convertToDTO(user);
+		return conversionService.convertToDTO(user);
+	}
+	
+	@Override
+	public List<UserDTO> getAllUsers() {
+		List<User> users = dataService.getAllUsers();
+		return conversionService.convertToUserDTOs(users);
+	}
+	
+	/**
+	 * Validate create user dto
+	 * @param userDTO dto to validate
+	 */
+	private void createUserValidate(UserDTO userDTO) {
+		if (userDTO.getUserId() != null) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID should not be defined when creating a new user");
+		}
+		validateUserDTO(userDTO);
+	}
+	
+	/**
+	 * Validate update user dto
+	 * @param userDTO dto to validate
+	 */
+	private void updateUserValidate(UserDTO userDTO) {
+		if (userDTO.getUserId() == null) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID should not be null when updating user");
+		}
+		validateUserDTO(userDTO);
+	}
+	
+	/**
+	 * Validate user dto
+	 * @param userDTO dto to validate
+	 */
+	private void validateUserDTO(UserDTO userDTO) {
+		if (StringUtils.isEmpty(userDTO.getUsername())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User name should not be null or empty");
+		}
+		if (StringUtils.isEmpty(userDTO.getPassword())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User password should not be null or empty");
+		}
+		if (StringUtils.isEmpty(userDTO.getLastname())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User lastname should not be null or empty");
+		}
+		if (StringUtils.isEmpty(userDTO.getFirstname())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User firstname should not be null or empty");
+		}
+		if (StringUtils.isEmpty(userDTO.getEmail())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User email should not be null or empty");
+		}
+		if (userDTO.getRoles() == null || userDTO.getRoles().isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User roles should not be null or empty");
+		}
 	}
 	
 	/**
@@ -72,6 +114,22 @@ public class UserExtServiceImpl implements UserExtService {
 	@Autowired
 	public void setMyStockDataService(MyStockDataService dataService) {
 		this.dataService = dataService;
+	}
+	
+	/**
+	 * @param conversionService the conversionService to set
+	 */
+	@Autowired
+	public void setMyStockConversionService(MyStockConversionService conversionService) {
+		this.conversionService = conversionService;
+	}
+	
+	/**
+	 * @param updateService the updateService to set
+	 */
+	@Autowired
+	public void setMyStockUpdateService(MyStockUpdateService updateService) {
+		this.updateService = updateService;
 	}
 
 }

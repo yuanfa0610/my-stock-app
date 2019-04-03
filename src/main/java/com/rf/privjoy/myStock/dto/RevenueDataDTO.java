@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class RevenueDataDTO {
 
 	private Long revenueDataId;
+	private Long companyId;
 	private String year;
 	private BigDecimal revenue;
 	private BigDecimal cost;
@@ -29,6 +30,20 @@ public class RevenueDataDTO {
 	 */
 	public void setRevenueDataId(Long revenueDataId) {
 		this.revenueDataId = revenueDataId;
+	}
+	
+	/**
+	 * @return the companyId
+	 */
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+	/**
+	 * @param companyId the companyId to set
+	 */
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
 	}
 
 	/**

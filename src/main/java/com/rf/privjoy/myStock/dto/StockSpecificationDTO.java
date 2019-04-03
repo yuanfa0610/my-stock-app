@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class StockSpecificationDTO {
 	
 	private Long stockSpecificationId;
+	private Long stockId;
 	private BigDecimal price;
 	private BigDecimal priceEarningRatio;
 	private BigDecimal priceBookRatio;
@@ -26,7 +27,21 @@ public class StockSpecificationDTO {
 	public void setStockSpecificationId(Long stockSpecificationId) {
 		this.stockSpecificationId = stockSpecificationId;
 	}
+	
+	/**
+	 * @return the stockId
+	 */
+	public Long getStockId() {
+		return stockId;
+	}
 
+	/**
+	 * @param stockId the stockId to set
+	 */
+	public void setStockId(Long stockId) {
+		this.stockId = stockId;
+	}
+	
 	/**
 	 * @return the price
 	 */
