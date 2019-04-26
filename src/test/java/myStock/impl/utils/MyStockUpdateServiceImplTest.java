@@ -12,6 +12,8 @@ import com.rf.privjoy.myStock.impl.persistent.RevenueData;
 import com.rf.privjoy.myStock.impl.persistent.Sector;
 import com.rf.privjoy.myStock.impl.utils.MyStockUpdateServiceImpl;
 
+import myStock.test.utils.CommonTestUtils;
+
 public class MyStockUpdateServiceImplTest {
 	
 	private MyStockUpdateServiceImpl myStockUpdateService;
@@ -69,19 +71,10 @@ public class MyStockUpdateServiceImplTest {
 	
 	@Test
 	public void test_updateExistingCompany() {
-		Company existingCompany = new Company();
-		existingCompany.setName(EXISTING_COMPANY_NAME);
-		existingCompany.setSector(EXISTING_COMPANY_SECTOR);
-		existingCompany.setYearOfFounded(EXISTING_COMPANY_YEAR_OF_FOUNDED);
-		existingCompany.setYearOfIpo(EXISTING_COMPANY_YEAR_OF_IPO);
-		existingCompany.setLink(EXISTING_COMPANY_LINK);
-		
-		Company updatedCompany = new Company();
-		updatedCompany.setName(UPDATED_COMPANY_NAME);
-		updatedCompany.setSector(UPDATED_COMPANY_SECTOR);
-		updatedCompany.setYearOfFounded(UPDATED_COMPANY_YEAR_OF_FOUNDED);
-		updatedCompany.setYearOfIpo(UPDATED_COMPANY_YEAR_OF_IPO);
-		updatedCompany.setLink(UPDATED_COMPANY_LINK);
+		Company existingCompany = CommonTestUtils.createCompany(EXISTING_COMPANY_NAME, EXISTING_COMPANY_SECTOR, EXISTING_COMPANY_YEAR_OF_FOUNDED, 
+																EXISTING_COMPANY_YEAR_OF_IPO, EXISTING_COMPANY_LINK);
+		Company updatedCompany = CommonTestUtils.createCompany(UPDATED_COMPANY_NAME, UPDATED_COMPANY_SECTOR, UPDATED_COMPANY_YEAR_OF_FOUNDED, 
+																UPDATED_COMPANY_YEAR_OF_IPO, UPDATED_COMPANY_LINK);
 		
 		existingCompany = myStockUpdateService.updateExistingCompany(existingCompany, updatedCompany);
 		
@@ -94,25 +87,10 @@ public class MyStockUpdateServiceImplTest {
 	
 	@Test
 	public void test_updateExistingRevenueData() {
-		RevenueData existingRevenueData = new RevenueData();
-		existingRevenueData.setCompany(EXISTING_REVENUE_DATA_COMPANY);
-		existingRevenueData.setYear(EXISTING_REVENUE_DATA_YEAR);
-		existingRevenueData.setRevenue(EXISTING_REVENUE_DATA_REVENUE);
-		existingRevenueData.setCost(EXISTING_REVENUE_DATA_COST);
-		existingRevenueData.setGrossProfit(EXISTING_REVENUE_DATA_GROSS_PROFIT);
-		existingRevenueData.setNetIncome(EXISTING_REVENUE_DATA_NET_INCOME);
-		existingRevenueData.setBasicEps(EXISTING_REVENUE_DATA_BASIC_EPS);
-		existingRevenueData.setDividendPayout(EXISTING_REVENUE_DATA_DIVIDEND_PAYOUT);
-		
-		RevenueData updatedRevenueData = new RevenueData();
-		updatedRevenueData.setCompany(UPDATED_REVENUE_DATA_COMPANY);
-		updatedRevenueData.setYear(UPDATED_REVENUE_DATA_YEAR);
-		updatedRevenueData.setRevenue(UPDATED_REVENUE_DATA_REVENUE);
-		updatedRevenueData.setCost(UPDATED_REVENUE_DATA_COST);
-		updatedRevenueData.setGrossProfit(UPDATED_REVENUE_DATA_GROSS_PROFIT);
-		updatedRevenueData.setNetIncome(UPDATED_REVENUE_DATA_NET_INCOME);
-		updatedRevenueData.setBasicEps(UPDATED_REVENUE_DATA_BASIC_EPS);
-		updatedRevenueData.setDividendPayout(UPDATED_REVENUE_DATA_DIVIDEND_PAYOUT);
+		RevenueData existingRevenueData = CommonTestUtils.createRevenueData(EXISTING_REVENUE_DATA_COMPANY, EXISTING_REVENUE_DATA_YEAR, EXISTING_REVENUE_DATA_REVENUE, EXISTING_REVENUE_DATA_COST, 
+																			EXISTING_REVENUE_DATA_GROSS_PROFIT, EXISTING_REVENUE_DATA_NET_INCOME, EXISTING_REVENUE_DATA_BASIC_EPS, EXISTING_REVENUE_DATA_DIVIDEND_PAYOUT);
+		RevenueData updatedRevenueData = CommonTestUtils.createRevenueData(UPDATED_REVENUE_DATA_COMPANY, UPDATED_REVENUE_DATA_YEAR, UPDATED_REVENUE_DATA_REVENUE, UPDATED_REVENUE_DATA_COST, 
+																			UPDATED_REVENUE_DATA_GROSS_PROFIT, UPDATED_REVENUE_DATA_NET_INCOME, UPDATED_REVENUE_DATA_BASIC_EPS, UPDATED_REVENUE_DATA_DIVIDEND_PAYOUT);
 		
 		existingRevenueData = myStockUpdateService.updateExistingRevenueData(existingRevenueData, updatedRevenueData);
 		
@@ -128,25 +106,10 @@ public class MyStockUpdateServiceImplTest {
 	
 	@Test
 	public void test_updateExistingAssetsData() {
-		AssetsData existingAssetsData = new AssetsData();
-		existingAssetsData.setCompany(EXISTING_ASSETS_DATA_COMPANY);
-		existingAssetsData.setYear(EXISTING_ASSETS_DATA_YEAR);
-		existingAssetsData.setCashOnHand(EXISTING_ASSETS_DATA_CASH_ON_HAND);
-		existingAssetsData.setCurrentAssets(EXISTING_ASSETS_DATA_CURRENT_ASSETS);
-		existingAssetsData.setTotalAssets(EXISTING_ASSETS_DATA_TOTAL_ASSETS);
-		existingAssetsData.setCurrentLiability(EXISTING_ASSETS_DATA_CURRENT_LIABILITY);
-		existingAssetsData.setLongTermDebt(EXISTING_ASSETS_DATA_LONG_TERM_DEBT);
-		existingAssetsData.setEquity(EXISTING_ASSETS_DATA_EQUITY);
-		
-		AssetsData updatedAssetsData = new AssetsData();
-		updatedAssetsData.setCompany(UPDATED_ASSETS_DATA_COMPANY);
-		updatedAssetsData.setYear(UPDATED_ASSETS_DATA_YEAR);
-		updatedAssetsData.setCashOnHand(UPDATED_ASSETS_DATA_CASH_ON_HAND);
-		updatedAssetsData.setCurrentAssets(UPDATED_ASSETS_DATA_CURRENT_ASSETS);
-		updatedAssetsData.setTotalAssets(UPDATED_ASSETS_DATA_TOTAL_ASSETS);
-		updatedAssetsData.setCurrentLiability(UPDATED_ASSETS_DATA_CURRENT_LIABILITY);
-		updatedAssetsData.setLongTermDebt(UPDATED_ASSETS_DATA_LONG_TERM_DEBT);
-		updatedAssetsData.setEquity(UPDATED_ASSETS_DATA_EQUITY);
+		AssetsData existingAssetsData = CommonTestUtils.createAssetsData(EXISTING_ASSETS_DATA_COMPANY, EXISTING_ASSETS_DATA_YEAR, EXISTING_ASSETS_DATA_CASH_ON_HAND, EXISTING_ASSETS_DATA_CURRENT_ASSETS, 
+																		EXISTING_ASSETS_DATA_TOTAL_ASSETS, EXISTING_ASSETS_DATA_CURRENT_LIABILITY, EXISTING_ASSETS_DATA_LONG_TERM_DEBT, EXISTING_ASSETS_DATA_EQUITY);
+		AssetsData updatedAssetsData = CommonTestUtils.createAssetsData(UPDATED_ASSETS_DATA_COMPANY, UPDATED_ASSETS_DATA_YEAR, UPDATED_ASSETS_DATA_CASH_ON_HAND, UPDATED_ASSETS_DATA_CURRENT_ASSETS, 
+																		UPDATED_ASSETS_DATA_TOTAL_ASSETS, UPDATED_ASSETS_DATA_CURRENT_LIABILITY, UPDATED_ASSETS_DATA_LONG_TERM_DEBT, UPDATED_ASSETS_DATA_EQUITY);
 		
 		existingAssetsData = myStockUpdateService.updateExistingAssetsData(existingAssetsData, updatedAssetsData);
 		
