@@ -2,11 +2,13 @@ package myStock.test.utils;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Set;
 
 import com.rf.privjoy.myStock.impl.persistent.AssetsData;
 import com.rf.privjoy.myStock.impl.persistent.Company;
 import com.rf.privjoy.myStock.impl.persistent.Inventory;
 import com.rf.privjoy.myStock.impl.persistent.RevenueData;
+import com.rf.privjoy.myStock.impl.persistent.Role;
 import com.rf.privjoy.myStock.impl.persistent.Sector;
 import com.rf.privjoy.myStock.impl.persistent.Stock;
 import com.rf.privjoy.myStock.impl.persistent.StockSpecification;
@@ -94,7 +96,7 @@ public class CommonTestUtils {
 	public static StockSpecification createStockSpecification(Stock stock, BigDecimal price, BigDecimal priceEarningRatio, BigDecimal priceBookRatio) {
 		StockSpecification stockSpecification = new StockSpecification();
 		stockSpecification.setStock(stock);
-		stockSpecification.setPrice(priceBookRatio);
+		stockSpecification.setPrice(price);
 		stockSpecification.setPriceEarningRatio(priceEarningRatio);
 		stockSpecification.setPriceBookRatio(priceBookRatio);
 		return stockSpecification;
@@ -110,7 +112,7 @@ public class CommonTestUtils {
 	 * @param active whether the user is active of not
 	 * @return new user
 	 */
-	public static User createUser(String username, String password, String lastname, String firstname, String email, boolean active) {
+	public static User createUser(String username, String password, String lastname, String firstname, String email, boolean active, Set<Role> roles) {
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
@@ -118,6 +120,7 @@ public class CommonTestUtils {
 		user.setFirstname(firstname);
 		user.setEmail(email);
 		user.setActive(active);
+		user.setRoles(roles);
 		return user;
 	}
 	
