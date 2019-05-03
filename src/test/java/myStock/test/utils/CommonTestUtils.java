@@ -17,6 +17,17 @@ import com.rf.privjoy.myStock.impl.persistent.User;
 public class CommonTestUtils {
 
 	/**
+	 * Create a new sector
+	 * @param name sector name
+	 * @return new sector
+	 */
+	public static Sector createSector(String name) {
+		Sector sector = new Sector();
+		sector.setName(name);
+		return sector;
+	}
+	
+	/**
 	 * Create a new company
 	 * @param name company name
 	 * @param sector company sector

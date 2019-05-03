@@ -240,6 +240,7 @@ public class MyStockConversionServiceImpl implements MyStockConversionService {
 		stock.setId(stockDTO.getStockId());
 		stock.setSymbol(stockDTO.getSymbol());
 		stock.setCompany(company);
+		stock.setStockSpecification(convertToPersistedObject(stockDTO.getStockSpecification()));
 		return stock;
 	}
 
